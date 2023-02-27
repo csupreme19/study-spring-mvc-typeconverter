@@ -1,14 +1,10 @@
 package hello.typeconverter.controller;
 
+import hello.typeconverter.type.IpPort;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.lang.reflect.Member;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -34,9 +30,16 @@ public class HelloController {
         return "ok";
     }
 
-    @GetMapping("/{value}")
-    public String get(@PathVariable Member member) {
+    @GetMapping("/hello-model")
+    public String get(@ModelAttribute Member member) {
         log.info("{}", member);
+        return "ok";
+    }
+
+    @GetMapping("/ip-port")
+    public String ipPort(@RequestParam IpPort ipPort) {
+        log.info("ipPort IP = {}", ipPort.getIp());
+        log.info("ipPort PORT = {}", ipPort.getPort());
         return "ok";
     }
 
