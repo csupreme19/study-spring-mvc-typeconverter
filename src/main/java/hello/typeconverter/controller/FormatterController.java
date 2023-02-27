@@ -1,5 +1,6 @@
 package hello.typeconverter.controller;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -34,9 +35,11 @@ public class FormatterController {
     @Data
     static class Form {
 
+        @JsonFormat(shape = JsonFormat.Shape.NUMBER, pattern = "###,###")
         @NumberFormat(pattern = "###,###")
         private Integer number;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime localDateTime;
 
